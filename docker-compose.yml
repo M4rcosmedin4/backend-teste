@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .  # Diretório onde o Dockerfile está localizado
+    ports:
+      - "3000:3000"  # Mapeia a porta 3000 do contêiner para a porta 3000 do host
+    volumes:
+      - .:/usr/src/app  # Monta o diretório atual no diretório de trabalho do contêiner
+    environment:
+      - NODE_ENV=development  # Defina o ambiente para desenvolvimento ou produção
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
